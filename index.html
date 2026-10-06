@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para ti ❤️</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    overflow:hidden;
+    height:100vh;
+    background:
+        radial-gradient(circle at center,#5c123f,#210817,#050107);
+    font-family:Arial,sans-serif;
+}
+
+/* CONTENEDOR DE CORAZONES */
+
+.corazones{
+    position:fixed;
+    inset:0;
+}
+
+/* CORAZÓN */
+
+.corazon{
+    position:absolute;
+    width:55px;
+    height:55px;
+
+    transform:rotate(-45deg);
+
+    background:#ff3f88;
+
+    box-shadow:
+        0 0 10px #ff3f88,
+        0 0 25px #ff1680,
+        0 0 45px #ff1680;
+
+    animation:mover 7s linear infinite;
+}
+
+/* Parte superior izquierda */
+
+.corazon::before,
+.corazon::after{
+    content:"";
+    position:absolute;
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:#ff3f88;
+}
+
+/* Círculo izquierdo */
+
+.corazon::before{
+    top:-27px;
+    left:0;
+}
+
+/* Círculo derecho */
+
+.corazon::after{
+    top:0;
+    left:27px;
+}
+
+/* Z DENTRO DEL CORAZÓN */
+
+.corazon span{
+
+    position:absolute;
+
+    z-index:10;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(45deg);
+
+    color:white;
+
+    font-size:20px;
+    font-weight:bold;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 12px #ffb4d6;
+
+}
+
+/* MOVIMIENTO */
+
+@keyframes mover{
+
+    0%{
+        transform:
+            translateY(110vh)
+            rotate(-45deg)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+""    }
+
+    50%{
+        transform:
+            translateY(45vh)
+            translateX(70px)
+            rotate(45deg)
+            scale(1);
+    }
+
+    100%{
+        transform:
+            translateY(-20vh)
+            translateX(-70px)
+            rotate(405deg)
+            scale(.6);
+
+        opacity:0;
+    }
+}
+
+
+/* MENSAJE CENTRAL */
+
+.mensaje{
+
+    position:absolute;
+
+    z-index:100;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:90%;
+
+    text-align:center;
+
+    color:white;
+
+    pointer-events:none;
+}
+
+.mensaje h1{
+
+    font-family:Georgia,serif;
+
+    font-size:clamp(38px,9vw,70px);
+
+    margin:0;
+
+    text-shadow:
+        0 0 10px #ff4f9a,
+        0 0 30px #ff1680,
+        0 0 60px #ff1680;
+
+    animation:latido 1.5s infinite alternate;
+}
+
+.mensaje p{
+
+    font-size:19px;
+
+    color:#ffd7e9;
+
+    text-shadow:
+        0 0 10px #ff1680;
+}
+
+@keyframes latido{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.08);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="corazones" id="corazones"></div>
+
+<div class="mensaje">
+
+    <h1>Te amo ❤️</h1>
+
+    <p>
+        Eres lo más lindo del mundo.
+    </p>
+
+</div>
+
+
+<script>
+
+const contenedor =
+    document.getElementById("corazones");
+
+
+/* MUCHOS CORAZONES */
+
+for(let i=0;i<100;i++){
+
+    const corazon =
+        document.createElement("div");
+
+    corazon.className="corazon";
+
+
+    /* Z DENTRO */
+
+    corazon.innerHTML="<span>Z</span>";
+
+
+    /* POSICIÓN */
+
+    corazon.style.left =
+        Math.random()*100+"vw";
+
+
+    corazon.style.top =
+        Math.random()*100+"vh";
+
+
+    /* TAMAÑO ALEATORIO */
+
+    const tamaño =
+        30 + Math.random()*35;
+
+    corazon.style.width =
+        tamaño+"px";
+
+    corazon.style.height =
+        tamaño+"px";
+
+
+    /* VELOCIDAD */
+
+    corazon.style.animationDuration =
+        5 + Math.random()*7+"s";
+
+
+    /* RETRASO */
+
+    corazon.style.animationDelay =
+        Math.random()*7+"s";
+
+
+    contenedor.appendChild(corazon);
+
+}
+
+</script>
+
+</body>
+</html>
